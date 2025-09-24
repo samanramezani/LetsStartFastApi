@@ -1,0 +1,67 @@
+git init
+git add . = git add -A
+git commit -m " comment"
+git commit -a -m " comment" = ham stage mikone ham commit
+git log
+git fetch > in age roye server fileiii chizi ijad karde bashi rooo samte client fetch mikone vali namayesh nemide k gij nashi- vase sync shodan git merge bayad zad
+git merge
+git log --oneline
+git reflog
+git reset --hard <commit id> >>>> b in commadn b commit haye mokhtalef barmigardi
+git revert <commi id> >>> ba in mituni y commite khasi ro ham az charkhe etesal pak koni
+git cherry-pick  <commi id>
+
+
+origin:
+Definition: “origin” is the default name that refers to the main remote repository. When you clone a repository, Git automatically sets the remote repository you cloned from as “origin.”
+Usage: When you want to push your changes to or pull the latest changes from the main repository, you typically use “origin.” For example, with commands like git push origin or git pull origin.
+
+main and master:
+Definition: “main” and “master” generally refer to the primary branches in a Git project. Traditionally, the default name for the main branch in Git was “master,” but many projects have gradually transitioned to using “main” as the default branch name in recent years.
+Usage: This branch represents the main, stable version of your code, where most changes and new features are finalized and kept ready for production.
+
+Differences:
+origin refers to the address of the main remote repository, while main and master are names of branches that typically represent the primary and stable versions of the code.
+As many projects have changed the name from “master” to “main,” you may encounter both names. However, their function remains the same.
+
+
+
+vaghti mikhay az roye local file psuh koni roye gitlab
+bayd roye gitlab y repo khaliiii besazi
+toshooo kamel khali koni
+bad esme branch default gitlab main hast dar sorati k branch defualt toye git master- bayd inoo ham edit koni.
+yani git localet az master beshee main- ch jori
+injori!
+
+cd /project-dir
+git init
+git branch -M main
+git init --initial-branch=main >> age command balaro zadi dg inooo nemikhad
+git remote add fastapi-origin https://github.com/samanramezani/LetsStartFastApi.git
+git add . 
+git commmit -m " comment "
+git push --set-upstream Mohsen-origin main
+
+
+
+
+
+
+
+
+
+
+########################## branching ##############
+branch asli team vase develope master hast - vase sakht branch jadid
+
+git branch testmohsen
+git branch --list
+
+vase in k soti ina nadim b team test miyaym y branch midim b esme test
+git switch -c test > in miyad y branch jadid misaze b esme test va swtich mikone rosh
+
+git log --all --oneline --decorate --graph
+
+git merge dev >> inje ma toye main hastim va darim dev ro ba main merge mikonim- injori dev dast nakhorde mimone
+ya bar aksesha misheeeee
+git merge master 
