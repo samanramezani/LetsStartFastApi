@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI 
+from fastapi import Body, FastAPI 
 app = FastAPI() 
 
 
@@ -12,7 +12,7 @@ BOOKS = [
          {'title': "title six" , 'author' : 'author six' , 'category' : 'math'} , 
 ]
 
-
+#############  get method ################
 
 @app.get("/hi") 
 async def say_hi():
@@ -32,10 +32,10 @@ async def show_book():
 #         return {'dynamic_param' : dynamic_param}
 
 
-@app.get("/book/{book_name}") 
-async def read_book(book_name: str):
+@app.get("/book/{book_title}") 
+async def read_book(book_title: str):
         for book in BOOKS: 
-            if book.get('title').casefold() == book_name.casefold():
+            if book.get('title').casefold() == book_title.casefold():
                 return book
 #################################################################
 
@@ -53,3 +53,26 @@ async def read_book(book_name: str):
 
 
 ###### using path param with query at same time #######
+
+
+
+@app.get('/books/{book_author}/') 
+async def read_category_by_query(book_author: str, category: str):
+    books_to_return = [] 
+    for book in BOOKS: 
+        if book.get('author').casefold() == book_author.casefold() and \
+            book.get('category').casefold() == category.casefold():
+             books_to_return.append(book)
+    return books_to_return
+
+###################### post method #####################################
+
+
+
+########################## put method ####################################
+
+@app.put('/books/update_book') 
+async def update_book(updated_book=Body()):
+    for i in range(len(BOOKS)): 
+        if BOOKS[i].get('title').casefold() == updated_book.get('title').casefold():
+            BOOKS[i] = updated_book

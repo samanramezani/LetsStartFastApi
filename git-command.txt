@@ -38,14 +38,11 @@ git init
 git branch -M main
 git init --initial-branch=main >> age command balaro zadi dg inooo nemikhad
 git remote add fastapi-origin https://github.com/samanramezani/LetsStartFastApi.git
+git remote -v
 git add . 
 git commmit -m " comment "
 git push --set-upstream fastapi-origin main
-
-
-
-
-
+git pull origin main
 
 
 
