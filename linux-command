@@ -1,0 +1,328 @@
+###### ip ##########
+ip <OPTIONS> <OBJECT> <COMMAND>
+ip address show
+set ip: ip address add 192.168.1.254/24 dev enps03
+set gw: ip route add default via 192.168.1.254 dev eth0
+route add: ip route add 192.168.1.0/24 via 192.168.1.254
+or : ip route add 192.168.1.0/24 dev eth0
+delelte route: ip route delete 192.168.1.0/24 via 192.168.1.254
+ip address del 192.168.1.254/24 dev enps03
+ip link set eth0 up/down
+ip route get 10.10.1.4
+
+
+####### mtr= ping + traceroute #########
+mtr google.com
+mtr -g google.com > numeric
+mtr -b google.com
+mtr -c 10 google.com
+
+
+####### tcpdump #########
+
+tcpdump -D > show available interface
+tcpdump -i eth0 > capture traffic
+tcpdump -i eth0 -c 10 > capture only 10 packet
+filter only on specific host (outbound + inbound)
+tpcpdump -i eth10 -c 10 host google.com
+for incoming traffic from google.com
+tcpdump -i eth0 src host google.com
+for outgoing traffic going to googl.com
+tcpdump -i ens192 dst host google.com
+for incoming and outgoing traffic to specific ip
+tcpdump -i enth0 net 172.18.9.0/24  or tcpdump -i enth0 net 172.18.9.0 mask 255.255.255.0
+coming from:
+tcpdump -i eth0 src net 10.1.0.0/24
+goint to:
+tcpdump -i eth0 dst net 10.1.0.0/24
+
+
+##### tcpdump + port #####
+tcpdump -i eth0 port 53
+for specific host 
+tcpdump -i ens192 host 172.18.9.1 and port 22
+capture http:
+tcpdump -i eth0 -c 10 host www.google.com and port 443
+o capture all port except port 80 and 25,
+tcpdump -i eth0 port not 53 and not 25
+
+
+###################  netstat ############
+netstat
+netstat -a  > gharo ghati
+netstat -at > all tcp  port running
+netsta -lt > all listening port
+netstat -pt > tcp connection with pid
+netstat -au > all udp port running
+netsta  -lu > all listening udp port
+netstat -l > all listen port(unix-txp-udp)
+netstat -tupln >>> in awliyeeee
+To find a process that is using a particular port number, run
+netstat -an | grep ‘:<port number>’
+
+######## nslookup #########
+
+nslookup > enter > interactive
+server 172.18.9.1
+set type=debug
+set type=ns
+set type=a
+find a record:
+nslookkup mail.mci.ir
+nslookup mail.mci.ir 172.18.9.1
+nslookup -type=ns mci.ir 
+or 
+nslookyp -type=ns mci.ir 172.18.9.1
+nslookup -type=any mci.ir 172.18.9.1
+
+####### ping ########
+ping -c 3 mail.mci.ir
+ping -q -c 10 mail.mci.ir > quite and then show statistics
+ping -I ens192 mail.mci.ir
+ping -I eht1 mail.mci.ir
+ping -4 mail.mci.ir > ipv4
+ping -6 mail.mci.ir > ipv6
+
+
+######### find ########
+
+find (where to search) (what to search for)
+
+find path/ -type d -iname '*dir_name*'
+find /etc -name rsyslog
+find /home/user01 -type d
+
+find /etc -perm 777
+find . -perm 644
+-: exactly 
+
+find . -perm -644
+-: at least this permission 
+
+find . -perm /644
+/: hadeaghal
+
+# find -perm -u+w,g+w
+
+# find -perm -111 -exec chmod -R 777 {} \;
+getfacl > show permission for each file
+
+##########   xarg      ###############################################
+
+ls | xarg cat
+
+
+############### awk - sed - e(grep) ############
+
+
+grep -v mohsen text.txt
+grep -v \# /etc/ssh/sshd_config >>>> khataei k comment shoddaro neshun nemide
+tail -f /var/log/messages
+tail -f -n2 /var/log/messages
+egrep 'error|warning' file.txt
+ls -l | awk '{ print $3,$4 }'
+awk '/^[0-9]/ { print $2 }' /etc/hosts >>>> ba adad shoro mishe
+echo "salam mohsen" | sed 's/salam/bye/'
+sed -i 's/findthis/replacewiththis/g' /etc/ssh/sshd_config
+
+##################### curl #####################
+get request: 
+curl http://varzesh3.com
+Use -o to save the output to a file instead of displaying it on the terminal:
+curl -o filename.html http://example.com
+download file:
+curl -O https://varzesh3.com/videos.zip
+follow redirect: 
+curl -L https://varzesh3.com
+inculde http headers:
+curl -i https://varzesh3.com
+
+send a post request: 
+curl -d "param1=value1&param2=value2" -X POST http://example.com/resource
+
+Specify Content Type:
+When sending data (especially JSON), specify the content type:
+curl -H "Content-Type: application/json" -d '{"key":"value"}' -X POST http://example.com/resource
+
+To perform a request with basic authentication:
+curl -u username:password http://example.com
+
+################################################### bash history ############
+
+bash history:
+
+celar all command: 
+type this exactly this:
+> ~./bash_history
+
+history -c > clear current shell
+
+echo "" > ~./bash_history >>> replce with empty file
+
+diasble history loggin: 
+add below line to ~/.bashrc or ~./bash_history
+export HISTSIZE=0
+exportt HISTFILE=
+
+delete specefic line: 
+
+delete -d <line number>
+
+y tori pak she k dg barnagarde:
+
+shred -u ~./bash_history
+
+#######################  killing process #########################
+killing process: kill, pkill, killall
+
+kill ba pid mikoshe
+pkill ba name 
+
+*kill PID > by default gracefully kill mikone
+*kill -9  PID > by force
+*pkill -i firefox > case sensitive
+*pkill -9 firefox > by force
+
+############################## top ############
+top: 
+
+top -d 5 (by default each 3 second)
+top -d 1 -n 3 -b > aa.txt
+
+i > por masraf tarin haro list mikone (ram+cpu)
+c > cpu sort
+shift + m > memory sort
+shift + p > cpu sort
+shift + t > running time
+y > bar asase running process ha sort mikone
+b > running haro highlight mikone
+k> kill proccess with pid
+u > filter user
+m > memory display
+t > cpu display
+
+VIRT: virtual memory size
+RES: resident Set size
+SHR: shared memory
+TIME: total CPU time
+
+#####################    cpu      #############################
+cpu:
+
+* lscpu
+* cat /proc/cpuinfo
+* nproc  > tedad core haye cpu ro neshun mide
+* getconf _NPROCESSORS_ONLN
+* lshw -class processor
+* dmidecode -t processor
+
+##################   memory  ########
+Memory:
+
+* cat /proc/meminfo
+* free -h
+* free -s2 -h
+* top
+
+########## disk ########
+disk: 
+df -hT
+df -i 
+iostat > from systat package
+vmstat
+mpstat
+
+
+######### network #######
+
+
+
+
+########## ps #########
+
+current user process > *ps -u | ps -f
+connection method > *ps  -a
+all process > ps -alef | ps -aux
+filter ps for specific PID > *ps -p PID
+fileter for specific user > * ps -u root  | top -U root | htop -U root
+
+filet by memory (high to less) 
+ps -aux  --sort=-%mem
+ps -aux  --sort=-%cpu
+
+filet by memory (less to high)
+ps -aux --sort=+%mem
+ps -aux  --sort=+%cpu
+
+
+ps -alef : heards output
+F: flag > vlaue can be: 1 2 4 8 16 32 64 128 256 512 1024
+S: State > R:Running S: sleeping D:uninterrpteed sleep T: stopped I: idle X: Dead Z: zombie
+C: cpu utilization
+Stime: start time of process
+tty; Terminal type:  pts:ssh tty:console ?:daemon or system service
+Time: the amount of cpu time that the process has used since it started
+PR: priority(har chi kam tar olaviyat bishtar)
+NI : nice value ( it start from -20(highest) to 19 (lowest) )
+SZ: size of the process. its indicate total amount of memory being used by the process
+
+
+
+ps -aux : headers output: 
+VSZ: virtual memory size
+RSS: size of the physical memory
+STAT: process status: N: low priority <: high priority +: forground process L: Locked in memory s: session leader I:Mulitithread: which meadn it can execute multiple thread at the same time
+ S: sleeping R:running  Z:zombie T:stopped X: Dead 
+
+############   swap     #####################
+1-swap file 2-swap partition
+
+*swap partion is better than swap file
+*on vm swap partition is not available but swap file is still ok.
+
+status: ( if enabled it has output)
+swapon -s
+swapon --show
+free -h 
+
+
+***** Create swap file: *****************
+fallocate -l 1G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+until here everything is temporarly
+vim /etc/fstab > /swapfile non swap sw 0 0
+and end
+
+********** config swappiness: *************
+vim /proc/sys/vm/swappiness > 0= yani kam estefade kon  100= yani ziyd az swap estefade kon/ in server we set it to 1
+or
+sysctl vm.swappiness=30
+
+in 2 taa ravesh movaghate
+for permanet swappiness config: 
+
+vim /etc/sysctl.conf and add below valune to the file
+vm.swappiness=30
+
+
+******** resize swapfile ***************
+be sure the system has sufficiendt space for taking back data from swap to ram
+
+swapoff /swapfile
+fallocate -l 2G /swapfile
+mkswap /swapfile
+swapon /swapfile
+
+
+******* disable/ erase swap file ********
+swapoff /swapfile
+vim /etc/fstab
+rm /swapfile
+
+*************************************************************************************************************************************
+
+
+
+
